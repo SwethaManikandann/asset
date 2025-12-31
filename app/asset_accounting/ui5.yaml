@@ -1,0 +1,25 @@
+specVersion: "3.0"
+metadata:
+  name: asset-accounting
+type: application
+server:
+  customMiddleware:
+    - name: fiori-tools-proxy
+      afterMiddleware: compression
+      configuration:
+        ignoreCertError: false
+        backend:
+          - path: /service
+            url: http://localhost:4004
+            destination: swetha_manikandann_asset
+    - name: fiori-tools-appreload
+      afterMiddleware: compression
+      configuration:
+        port: 35729
+        path: webapp
+        delay: 300
+    - name: fiori-tools-preview
+      afterMiddleware: fiori-tools-appreload
+      configuration:
+        component: ns.assetaccounting
+        ui5Theme: sap_horizon
