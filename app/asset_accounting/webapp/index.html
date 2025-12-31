@@ -1,22 +1,112 @@
 <!DOCTYPE html>
 <html>
+
 <head>
     <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Asset Accounting</title>
-    <script
-        id="sap-ui-bootstrap"
-        src="https://sapui5.hana.ondemand.com/resources/sap-ui-core.js"
-        data-sap-ui-theme="sap_horizon"
-        data-sap-ui-resourceroots='{
-            "ns.assetaccounting": "./"
-        }'
-        data-sap-ui-oninit="module:sap/ui/core/ComponentSupport"
-        data-sap-ui-compatVersion="edge"
-        data-sap-ui-async="true"
-        data-sap-ui-libs="sap.m,sap.fe.templates"
-    ></script>
+
+    <script>
+        window["sap-ushell-config"] = {
+            defaultRenderer: "fiori2",
+            bootstrapPlugins: {
+                "RuntimeAuthoringPlugin": {
+                    component: "sap.ushell.plugins.rta",
+                    config: {
+                        validateAppVersion: false
+                    }
+                },
+                "PersonalizePlugin": {
+                    component: "sap.ushell.plugins.rta-personalize",
+                    config: {
+                        validateAppVersion: false
+                    }
+                }
+            },
+            renderers: {
+                fiori2: {
+                    componentData: {
+                        config: {
+                            enableSearch: false,
+                            rootIntent: "Asset-manage"
+                        }
+                    }
+                }
+            },
+            services: {
+                LaunchPage: {
+                    adapter: {
+                        config: {
+                            groups: [{
+                                id: "group1",
+                                title: "Asset Management",
+                                isPreset: true,
+                                isVisible: true,
+                                isGroupLocked: false,
+                                tiles: [{
+                                    id: "tile1",
+                                    title: "Manage Assets",
+                                    size: "1x1",
+                                    tileType: "sap.ushell.ui.tile.StaticTile",
+                                    properties: {
+                                        chipId: "catalogTile_00",
+                                        title: "Manage Assets",
+                                        info: "Asset Accounting",
+                                        targetURL: "#Asset-manage"
+                                    }
+                                }]
+                            }]
+                        }
+                    }
+                },
+                ClientSideTargetResolution: {
+                    adapter: {
+                        config: {
+                            inbounds: {
+                                "Asset-manage": {
+                                    semanticObject: "Asset",
+                                    action: "manage",
+                                    title: "Manage Assets",
+                                    signature: {
+                                        parameters: {},
+                                        additionalParameters: "allowed"
+                                    },
+                                    resolutionResult: {
+                                        applicationType: "SAPUI5",
+                                        ui5ComponentName: "ns.assetaccounting",
+                                        url: "./"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                },
+                NavTargetResolution: {
+                    config: {
+                        "enableClientSideTargetResolution": true
+                    }
+                }
+            }
+        };
+    </script>
+
+    <script src="https://sapui5.hana.ondemand.com/test-resources/sap/ushell/bootstrap/sandbox.js"></script>
+
+    <script id="sap-ui-bootstrap" src="https://sapui5.hana.ondemand.com/resources/sap-ui-core.js"
+        data-sap-ui-theme="sap_horizon" data-sap-ui-libs="sap.m,sap.fe.templates,sap.ushell"
+        data-sap-ui-compatVersion="edge" data-sap-ui-async="true" data-sap-ui-preload="async" data-sap-ui-resourceroots='{
+				"ns.assetaccounting": "./"
+			}' data-sap-ui-frameOptions="allow">
+            </script>
+
+    <script>
+        sap.ui.getCore().attachInit(function () {
+            sap.ushell.Container.createRenderer().placeAt("content");
+        });
+    </script>
 </head>
+
 <body class="sapUiBody" id="content">
-    <div data-sap-ui-component data-name="ns.assetaccounting" data-id="container" data-settings='{"id" : "assetaccounting"}'></div>
 </body>
+
 </html>
