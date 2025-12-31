@@ -18,28 +18,28 @@ annotate assetmanagementSrv.Assets with @UI.SelectionFields: [
 ];
 
 annotate assetmanagementSrv.Assets with @UI.LineItem: [
- { $Type: 'UI.DataField', Value: assetNumber },
- { $Type: 'UI.DataField', Value: assetName },
- { $Type: 'UI.DataField', Value: assetClass },
- { $Type: 'UI.DataField', Value: costCenter },
- { $Type: 'UI.DataField', Value: acquisitionValue },
- { $Type: 'UI.DataField', Value: capitalizationDate },
- { $Type: 'UI.DataField', Value: usefulLife },
- { $Type: 'UI.DataField', Value: depreciationKey },
- { $Type: 'UI.DataField', Value: status }
+ { $Type: 'UI.DataField', Value: assetNumber, Label: 'Asset Number' },
+ { $Type: 'UI.DataField', Value: assetName, Label: 'Asset Name' },
+ { $Type: 'UI.DataField', Value: assetClass, Label: 'Asset Class' },
+ { $Type: 'UI.DataField', Value: costCenter, Label: 'Cost Center' },
+ { $Type: 'UI.DataField', Value: acquisitionValue, Label: 'Acquisition Value' },
+ { $Type: 'UI.DataField', Value: capitalizationDate, Label: 'Capitalization Date' },
+ { $Type: 'UI.DataField', Value: usefulLife, Label: 'Useful Life (Years)' },
+ { $Type: 'UI.DataField', Value: depreciationKey, Label: 'Depreciation Key' },
+ { $Type: 'UI.DataField', Value: status, Label: 'Status' }
 ];
 
 annotate assetmanagementSrv.Assets with @UI.FieldGroup #Main: {
   $Type: 'UI.FieldGroupType', Data: [
- { $Type: 'UI.DataField', Value: assetNumber },
- { $Type: 'UI.DataField', Value: assetName },
- { $Type: 'UI.DataField', Value: assetClass },
- { $Type: 'UI.DataField', Value: costCenter },
- { $Type: 'UI.DataField', Value: acquisitionValue },
- { $Type: 'UI.DataField', Value: capitalizationDate },
- { $Type: 'UI.DataField', Value: usefulLife },
- { $Type: 'UI.DataField', Value: depreciationKey },
- { $Type: 'UI.DataField', Value: status }
+ { $Type: 'UI.DataField', Value: assetNumber, Label: 'Asset Number (e.g. AST-1001)' },
+ { $Type: 'UI.DataField', Value: assetName, Label: 'Asset Name (e.g. Laptop)' },
+ { $Type: 'UI.DataField', Value: assetClass, Label: 'Asset Class (e.g. Hardware)' },
+ { $Type: 'UI.DataField', Value: costCenter, Label: 'Cost Center (e.g. CC-01)' },
+ { $Type: 'UI.DataField', Value: acquisitionValue, Label: 'Acquisition Value (Positive Amount)' },
+ { $Type: 'UI.DataField', Value: capitalizationDate, Label: 'Capitalization Date' },
+ { $Type: 'UI.DataField', Value: usefulLife, Label: 'Useful Life in Years (Integer)' },
+ { $Type: 'UI.DataField', Value: depreciationKey, Label: 'Depreciation Key (e.g. LINS)' },
+ { $Type: 'UI.DataField', Value: status, Label: 'Status' }
   ]
 };
 
