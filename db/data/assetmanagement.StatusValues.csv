@@ -1,5 +1,5 @@
-code;text
-ACTIVE;Active
-INACTIVE;Inactive
-RETIRED;Retired
-LOCKED;Locked
+code,text
+Active,Active
+Inactive,Inactive
+Retired,Retired
+Locked,Locked
