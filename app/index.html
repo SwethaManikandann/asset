@@ -1,51 +1,12 @@
-<!DOCTYPE HTML>
+<!DOCTYPE html>
 <html>
 
 <head>
-    <title> Project Preview </title>
-    <script src="https://ui5.sap.com/1.136.9/resources/sap-ui-core.js" 
-            id="sap-ui-bootstrap"
-            data-sap-ui-theme="sap_horizon"
-            data-sap-ui-bindingSyntax="complex" 
-            data-sap-ui-xx-bindingSyntax="complex"
-            data-sap-ui-resourceroots='{"assets": "assets"}' 
-            data-sap-ui-libs="sap.m,sap.uxap,sap.ui.layout,sap.f">
-    </script>
-    <link rel="stylesheet" href="assets/preview.css">
+    <meta http-equiv="refresh" content="0; url=/asset_accounting/webapp/index.html" />
 </head>
 
-<body id="body" class="sapUiBody">
-    <script>
-        "use strict";
-        sap.ui.localResources("assets");
-        (function (jQuery, App, Page) {
-            sap.ui.getCore().attachInit(function () {
-                sap.ui.define([
-                    "sap/ui/core/mvc/Controller",
-                    "sap/ui/model/json/JSONModel"
-                ], function (Controller, JSONModel) {
-                    return Controller.extend("PreviewController", {
-                        onInit: function () {
-
-                            const data = {"Services":[{"ServiceName":"assetmanagementSrv","DetailsURL":"./service/assetmanagement/","Metadata":"./service/assetmanagement/$metadata","Entities":[{"Name":"Assets","URL":"./service/assetmanagement/Assets","FioriURL":"$fiori-preview/assetmanagementSrv/Assets#preview-app"},{"Name":"PurchaseRequisitions","URL":"./service/assetmanagement/PurchaseRequisitions","FioriURL":"$fiori-preview/assetmanagementSrv/PurchaseRequisitions#preview-app"},{"Name":"PurchaseOrders","URL":"./service/assetmanagement/PurchaseOrders","FioriURL":"$fiori-preview/assetmanagementSrv/PurchaseOrders#preview-app"},{"Name":"GoodsReceipts","URL":"./service/assetmanagement/GoodsReceipts","FioriURL":"$fiori-preview/assetmanagementSrv/GoodsReceipts#preview-app"},{"Name":"VendorInvoices","URL":"./service/assetmanagement/VendorInvoices","FioriURL":"$fiori-preview/assetmanagementSrv/VendorInvoices#preview-app"},{"Name":"DepreciationRuns","URL":"./service/assetmanagement/DepreciationRuns","FioriURL":"$fiori-preview/assetmanagementSrv/DepreciationRuns#preview-app"},{"Name":"LegacyAssets","URL":"./service/assetmanagement/LegacyAssets","FioriURL":"$fiori-preview/assetmanagementSrv/LegacyAssets#preview-app"},{"Name":"StatusValues","URL":"./service/assetmanagement/StatusValues","FioriURL":"$fiori-preview/assetmanagementSrv/StatusValues#preview-app"}],"EntitiesCount":8}]}
-                            this.getView().setModel(new JSONModel(data));
-                        }
-                    });
-                });
-                var oApp = new App()
-                var previewView = sap.ui.view({
-                    viewName: "assets.Preview",
-                    type: sap.ui.core.mvc.ViewType.XML
-                });
-                oApp.addPage(new Page({
-                    content: [previewView],
-                    showHeader: false
-                })).placeAt("content");
-            });
-
-        }(jQuery, sap.m.App, sap.m.Page));
-    </script>
-    <div id="content"></div>
+<body>
+    <p><a href="/asset_accounting/webapp/index.html">Redirecting to Asset Accounting App...</a></p>
 </body>
 
 </html>
