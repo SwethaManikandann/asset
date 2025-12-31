@@ -17,4 +17,5 @@ service assetmanagementSrv {
   entity DepreciationRuns as projection on my.DepreciationRuns;
   @odata.draft.enabled
   entity LegacyAssets as projection on my.LegacyAssets;
+  @readonly entity StatusValues as projection on my.StatusValues;
 }

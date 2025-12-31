@@ -1,25 +1,23 @@
 using { assetmanagementSrv } from '../srv/service.cds';
 
-annotate assetmanagementSrv.Assets with @UI.HeaderInfo: { TypeName: 'Asset', TypeNamePlural: 'Assets', Title: { Value: assetsID } };
-annotate assetmanagementSrv.Assets with {
-  ID @UI.Hidden @Common.Text: { $value: assetsID, ![@UI.TextArrangement]: #TextOnly }
-};
-annotate assetmanagementSrv.Assets with @UI.Identification: [{ Value: assetsID }];
-annotate assetmanagementSrv.Assets with {
-  assetsID @title: 'ID';
-  assetNumber @title: 'Asset Number';
-  assetName @title: 'Asset Name';
-  assetClass @title: 'Asset Class';
-  costCenter @title: 'Cost Center';
-  acquisitionValue @title: 'Acquisition Value';
-  capitalizationDate @title: 'Capitalization Date';
-  usefulLife @title: 'Useful Life';
-  depreciationKey @title: 'Depreciation Key';
-  status @title: 'Status'
+annotate assetmanagementSrv.Assets with @UI.HeaderInfo: {
+  TypeName: 'Asset',
+  TypeNamePlural: 'Assets',
+  Title: { Value: assetName },
+  Description: { Value: assetNumber }
 };
 
+annotate assetmanagementSrv.Assets with @UI.PresentationVariant: {
+  SortOrder: [{ Property: capitalizationDate, Descending: true }],
+  Visualizations: ['@UI.LineItem']
+};
+
+annotate assetmanagementSrv.Assets with @UI.SelectionFields: [
+  assetNumber,
+  assetName
+];
+
 annotate assetmanagementSrv.Assets with @UI.LineItem: [
- { $Type: 'UI.DataField', Value: assetsID },
  { $Type: 'UI.DataField', Value: assetNumber },
  { $Type: 'UI.DataField', Value: assetName },
  { $Type: 'UI.DataField', Value: assetClass },
@@ -33,7 +31,6 @@ annotate assetmanagementSrv.Assets with @UI.LineItem: [
 
 annotate assetmanagementSrv.Assets with @UI.FieldGroup #Main: {
   $Type: 'UI.FieldGroupType', Data: [
- { $Type: 'UI.DataField', Value: assetsID },
  { $Type: 'UI.DataField', Value: assetNumber },
  { $Type: 'UI.DataField', Value: assetName },
  { $Type: 'UI.DataField', Value: assetClass },
@@ -50,9 +47,16 @@ annotate assetmanagementSrv.Assets with @UI.Facets: [
   { $Type: 'UI.ReferenceFacet', ID: 'Main', Label: 'General Information', Target: '@UI.FieldGroup#Main' }
 ];
 
-annotate assetmanagementSrv.Assets with @UI.SelectionFields: [
-  assetsID
-];
+annotate assetmanagementSrv.Assets with {
+  status @Common.ValueList: {
+    CollectionPath: 'StatusValues',
+    Label: 'Status',
+    Parameters: [
+      { $Type: 'Common.ValueListParameterInOut', LocalDataProperty: status, ValueListProperty: 'code' },
+      { $Type: 'Common.ValueListParameterDisplayOnly', ValueListProperty: 'text' }
+    ]
+  };
+};
 
 annotate assetmanagementSrv.PurchaseRequisitions with @UI.HeaderInfo: { TypeName: 'Purchase Requisition', TypeNamePlural: 'Purchase Requisitions', Title: { Value: purchaseRequisitionsID } };
 annotate assetmanagementSrv.PurchaseRequisitions with {

@@ -8,11 +8,16 @@ entity Assets : cuid {
   assetName: String(120);
   assetClass: String(40);
   costCenter: String(30);
-  acquisitionValue: Decimal(15,2);
+  acquisitionValue: Decimal(15,2) @assert.range: [0.01, null];
   capitalizationDate: Date;
   usefulLife: Integer;
   depreciationKey: String(10);
   status: String(20);
+}
+
+entity StatusValues {
+  key code: String(20);
+  text: String(50);
 }
 
 @assert.unique: { purchaseRequisitionsID: [purchaseRequisitionsID] }
