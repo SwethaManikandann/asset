@@ -1,0 +1,128 @@
+{
+    "_version": "1.49.0",
+    "sap.app": {
+        "id": "ns.assetaccounting",
+        "type": "application",
+        "i18n": "i18n/i18n.properties",
+        "applicationVersion": {
+            "version": "1.0.0"
+        },
+        "title": "{{appTitle}}",
+        "description": "{{appDescription}}",
+        "dataSources": {
+            "mainService": {
+                "uri": "/service/assetmanagement/",
+                "type": "OData",
+                "settings": {
+                    "odataVersion": "4.0"
+                }
+            },
+            "annotation": {
+                "type": "ODataAnnotation",
+                "uri": "annotations/annotation.xml",
+                "settings": {
+                    "localUri": "annotations/annotation.xml"
+                }
+            }
+        }
+    },
+    "sap.ui": {
+        "technology": "UI5",
+        "icons": {
+            "icon": "sap-icon://money-bills"
+        },
+        "deviceTypes": {
+            "desktop": true,
+            "tablet": true,
+            "phone": true
+        }
+    },
+    "sap.ui5": {
+        "flexEnabled": true,
+        "dependencies": {
+            "minUI5Version": "1.108.0",
+            "libs": {
+                "sap.m": {},
+                "sap.ui.core": {},
+                "sap.ushell": {},
+                "sap.fe.templates": {}
+            }
+        },
+        "contentDensities": {
+            "compact": true,
+            "cozy": true
+        },
+        "models": {
+            "i18n": {
+                "type": "sap.ui.model.resource.ResourceModel",
+                "settings": {
+                    "bundleName": "ns.assetaccounting.i18n.i18n"
+                }
+            },
+            "": {
+                "dataSource": "mainService",
+                "preload": true,
+                "settings": {
+                    "synchronizationMode": "None",
+                    "operationMode": "Server",
+                    "autoExpandSelect": true,
+                    "earlyRequests": true
+                }
+            }
+        },
+        "routing": {
+            "config": {
+                "routerClass": "sap.m.routing.Router",
+                "viewType": "XML",
+                "viewPath": "ns.assetaccounting.view",
+                "controlId": "appContent",
+                "controlAggregation": "pages",
+                "async": true
+            },
+            "routes": [
+                {
+                    "pattern": ":?query:",
+                    "name": "ListReport",
+                    "target": "ListReport"
+                },
+                {
+                    "pattern": "Assets({key}):?query:",
+                    "name": "ObjectPage",
+                    "target": "ObjectPage"
+                }
+            ],
+            "targets": {
+                "ListReport": {
+                    "type": "Component",
+                    "id": "ListReport",
+                    "name": "sap.fe.templates.ListReport",
+                    "options": {
+                        "settings": {
+                            "entitySet": "Assets",
+                            "variantManagement": "Page",
+                            "navigation": {
+                                "Assets": {
+                                    "detail": {
+                                        "route": "ObjectPage"
+                                    }
+                                }
+                            },
+                            "initialLoad": "Enabled"
+                        }
+                    }
+                },
+                "ObjectPage": {
+                    "type": "Component",
+                    "id": "ObjectPage",
+                    "name": "sap.fe.templates.ObjectPage",
+                    "options": {
+                        "settings": {
+                            "entitySet": "Assets",
+                            "editableHeaderContent": false
+                        }
+                    }
+                }
+            }
+        }
+    }
+}

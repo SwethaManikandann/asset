@@ -1,0 +1,9 @@
+{
+    "name": "asset-accounting",
+    "version": "1.0.0",
+    "description": "Asset Accounting Fiori Elements App",
+    "scripts": {
+        "start": "fiori run --open 'index.html'"
+    },
+    "sapux": true
+}
